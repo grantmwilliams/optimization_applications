@@ -2,7 +2,7 @@ function optimum_point = interval_halving(fitness_function,boundary_conditions,s
 % This function returns the maximum point of the fitness function within
 % the boundary conditions by use of the interval halving technique (similar
 % to binary search tree).
-fitness = [0, 0];
+fitness = [0, 0]
 
 left_check = start_point - abs(boundary_conditions(1) - start_point)/2;
 
@@ -12,7 +12,7 @@ fitness(1) = get_fitness(fitness_function,boundary_conditions,left_check);
 fitness(2) = get_fitness(fitness_function,boundary_conditions,right_check);
 
 [opt,point] = max(fitness);
-optimum_point = [point, opt];
+optimum_point = [p
 
 end
 
