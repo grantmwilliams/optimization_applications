@@ -22,52 +22,52 @@ using namespace std;
 
 double f(double x)
 {
-	return (x*x*x - 4*x - 9);
+    return (x*x*x - 4*x - 9);
 }
 
 int main()
 {
 
-	//clock stuff
+    //clock stuff
     std::clock_t start;
     double duration;
     start = std::clock();
     //stop clock stuff
 
-	int iter = 1;
-	int MAX_ITER = 10000;
-	double TOL = 0.00001;
-	double L = -10, R = 10;
-	double M;
+    int iter = 1;
+    int MAX_ITER = 10000;
+    double TOL = 0.00001;
+    double L = -10, R = 10;
+    double M;
 
-	while (iter < MAX_ITER)
+     while (iter < MAX_ITER)
+     {
+        M = (L + R)*0.5; // New Midpoint
+         
+        if( f(M) == 0 || ((R-L)*0.5) < TOL)
 	{
-		M = (L + R)*0.5; // New Midpoint
-		
-		if( f(M) == 0 || ((R-L)*0.5) < TOL)
-		{
-			std::cout<< " After " << iter << " iterations, a root was found at: " << M << std::endl;
+		std::cout<< " After " << iter << " iterations, a root was found at: " << M << std::endl;
 			
-			//clock stuff again
+	        //clock stuff again
     		duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
     		std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
 
-			return 0;
-		}
+		return 0;
+	}
 
-		iter++;
-		if ((f(M) * f(L)) < 0)
-			R = M;
-		else
-			L = M;
+	iter++;
+	if ((f(M) * f(L)) < 0)
+	R = M;
+	else
+	L = M;
 	}
 
 	std::cout << "The solution does not converge or iterations are not sufficient" << std::endl;
 
 
 	//clock stuff again
-    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-    std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
+        duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+        std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
 	
 	return 1;
 }
