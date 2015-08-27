@@ -4,52 +4,12 @@ Grant Williams - August 27
 Version 1.0.0
 
 */
-/* Pseudo Code:
-
-#include<stdio.h>
-#include<math.h>
-float fun (float x)
-{
-    return (x*x*x - 4*x - 9);
-}
-void bisection (float *x, float a, float b, int *itr)
-// this function performs and prints the result of one iteration 
-{
-    *x=(a+b)/2;
-    ++(*itr);
-    printf("Iteration no. %3d X = %7.5f\n", *itr, *x);
-}
-void main ()
-{
-    int itr = 0, maxmitr;
-    float x, a, b, allerr, x1;
-    printf("\nEnter the values of a, b, allowed error and maximum iterations:\n");
-    scanf("%f %f %f %d", &a, &b, &allerr, &maxmitr);
-    bisection (&x, a, b, &itr);
-    do
-    {
-        if (fun(a)*fun(x) < 0)
-            b=x;
-        else
-            a=x;
-        bisection (&x1, a, b, &itr);
-        if (fabs(x1-x) < allerr)
-        {
-            printf("After %d iterations, root = %6.4f\n", itr, x1);
-            return 0;
-        }
-        x=x1;
-    }
-    while (itr < maxmitr);
-    printf("The solution does not converge or iterations are not sufficient");
-    return 1;
-}
-*/
-
 
 #include <math.h>
 #include <stdio.h>
 #include <cstdlib>
+#include <ctime>
+#include <iostream>
 
 float fun (float x)
 {
@@ -61,10 +21,17 @@ void bisection (float *x, float a, float b, int *itr)
 {
     *x=(a+b)/2;
     ++(*itr);
-    //printf("Iteration no. %3d X = %7.5f\n", *itr, *x);
+    //std::cout << "Iteration no. " << *itr << " X = " << *x << std::endl;
 }
 int main ()
 {
+
+    //clock stuff
+    std::clock_t start;
+    double duration;
+    start = std::clock();
+    //stop clock stuff
+
     int itr = 0, maxmitr = 10000;
     float x, a = -10, b = 10, allerr = 0.000001, x1;
     bisection (&x, a, b, &itr);
@@ -77,12 +44,23 @@ int main ()
         bisection (&x1, a, b, &itr);
         if (fabs(x1-x) < allerr)
         {
-            printf("After %d iterations, root = %6.4f\n", itr, x1);
+            std::cout << "After " << itr << " iterations, root = " << x1 << std::endl;
+            
+            //clock stuff again
+            duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    
+            std::cout<<"Elapsed time: " << duration << " seconds" << std::endl;
+
             return 0;
         }
         x=x1;
     }
     while (itr < maxmitr);
-    printf("The solution does not converge or iterations are not sufficient");
+    std::cout << "The solution does not converge or iterations are not sufficient" << std::endl;
+
+     //clock stuff again
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    
+    std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
     return 1;
 }
