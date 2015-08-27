@@ -16,5 +16,4 @@ elseif (fitness_function == 2)
     boundary_conditions = [- 2 * pi, 2 * pi];
     
 elseif (fitness_function == 3)
-    boundary_conditions = [-3, 3];
-end % end fitness function boundary conditions
+    boundary_conditions = [-3, 3 
