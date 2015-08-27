@@ -34,40 +34,41 @@ int main()
     start = std::clock();
     //stop clock stuff
 
-    int iter = 1;
     int MAX_ITER = 10000;
     double TOL = 0.00001;
     double L = -10, R = 10;
     double M;
+    double fun_val;
 
-     while (iter < MAX_ITER)
+     for (int iter = 1; iter < MAX_ITER; ++iter)
      {
         M = (L + R)*0.5; // New Midpoint
-         
-        if( f(M) == 0 || ((R-L)*0.5) < TOL)
-	{
-		std::cout<< " After " << iter << " iterations, a root was found at: " << M << std::endl;
-			
-	        //clock stuff again
-    		duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-    		std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
+        fun_val = f(M);
 
-		return 0;
-	}
+        if( fun_val == 0 || ((R-L)*0.5) < TOL)
+        {
+    		std::cout<< " After " << iter << " iterations, a root was found at: " << M << std::endl;
+    			
+            //clock stuff again
+        	duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+        	std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
 
-	iter++;
-	if ((f(M) * f(L)) < 0)
-	R = M;
+    		return 0;
+	   } // end if statement
+
+	if ((fun_val * f(L)) < 0)
+	   R = M;
 	else
-	L = M;
-	}
+	   L = M;
+
+	} // end for loop
 
 	std::cout << "The solution does not converge or iterations are not sufficient" << std::endl;
 
 
 	//clock stuff again
-        duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-        std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
 	
 	return 1;
 }
