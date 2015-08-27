@@ -1,4 +1,4 @@
-/* Interval Halving Attempt C++
+/* Interval Halving Attempt C++ (Example Program For Comparison Sake. NOT Written By Me)
 
 Grant Williams - August 27
 Version 1.0.0
