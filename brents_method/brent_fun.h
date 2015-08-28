@@ -79,11 +79,11 @@ void brents_fun(std::function<double (double)> f,
 			(condition 4) (mflag is set and |b−c| < |TOL|) or
 			(condition 5) (mflag is false and |c−d| < |TOL|)
 		*/
-		if ( ( (s < (3 * a + b) * 0.25) || (s > b) ) ||
-			( mflag && (std::abs(s-b) >= (std::abs(b-c) * 0.5)) ) ||
-			( !mflag && (std::abs(s-b) >= (std::abs(c-d) * 0.5)) ) ||
-			( mflag && (std::abs(b-c) < TOL) ) ||
-			( !mflag && (std::abs(c-d) < TOL)) )
+		if (	( (s < (3 * a + b) * 0.25) || (s > b) ) ||
+				( mflag && (std::abs(s-b) >= (std::abs(b-c) * 0.5)) ) ||
+				( !mflag && (std::abs(s-b) >= (std::abs(c-d) * 0.5)) ) ||
+				( mflag && (std::abs(b-c) < TOL) ) ||
+				( !mflag && (std::abs(c-d) < TOL))	)
 		{
 			// bisection method
 			s = (a+b)*0.5;
