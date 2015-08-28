@@ -26,17 +26,37 @@ int main()
 	start = std::clock();
 	//stop clock stuff
 
-	//Example Function
-	auto f = [](double x){ return (x*x*x - 4*x - 9); };
-
-	double a = -10;			// lower bound
-	double b = 10;			// upper bound
-	double TOL = 0.00001;	// tolerance
+	double a;				// lower bound
+	double b;				// upper bound
+	double TOL = 0.0001;	// tolerance
 	double MAX_ITER = 1000;	// maximum number of iterations
 
-	//double root = brent_fun(f,a,b,TOL,MAX_ITER);
+	int function = 1;		// set polynomial to find roots of & boundary conditions for that polynomial
 
-	//std::cout << "The Root is: " << root << std::endl;
+	//example functions
+	if (function == 1)
+	{
+		a = -1.5;
+		b = 0;
+		auto f = [](double x){ return (x+1) * (x+2) * (x+3); };
+		brents_fun(f,a,b,TOL,MAX_ITER);
+	}
+	else if (function == 2)
+	{
+		a = -10;
+		b = 10;
+		auto f = [](double x){ return (x*x*x -4*x - 9); };
+		brents_fun(f,a,b,TOL,MAX_ITER);
+	}
+	else if (function == 3)
+	{
+		a = -4;
+		b = 3;
+		auto f = [](double x){ return (x+3)*(x-1)*(x-1); };
+		brents_fun(f,a,b,TOL,MAX_ITER);
+	}
+
+
 
 	//clock stuff again
 	duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
