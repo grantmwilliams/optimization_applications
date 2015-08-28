@@ -2,7 +2,7 @@
 
 Grant Williams
 
-Version 1.0.0
+Version 1.0.1
 August 27, 2015
 
 Interval Halving Polynomial Root Finder
@@ -47,30 +47,31 @@ int main()
 
         if( fun_val == 0 || ((R-L)*0.5) < TOL)
         {
-    		std::cout<< " After " << iter << " iterations, a root was found at: " << M << std::endl;
-    			
+            std::cout<< " After " << iter << " iterations, a root was found at: " << M << std::endl;
+
             //clock stuff again
-        	duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-        	std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
+            duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+            std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
 
-    		return 0;
-	   } // end if statement
+            return 0;
+        
+        } // end if statement
 
-	if ((fun_val * f(L)) < 0)
-	   R = M;
-	else
-	   L = M;
+    if ((fun_val * f(L)) < 0)
+        R = M;
+    else
+        L = M;
 
-	} // end for loop
+    } // end for loop
 
-	std::cout << "The solution does not converge or iterations are not sufficient" << std::endl;
+    std::cout << "The solution does not converge or iterations are not sufficient" << std::endl;
 
 
-	//clock stuff again
+    //clock stuff again
     duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
     std::cout<<"Elapsed time: "<< duration <<" seconds" << std::endl;
-	
-	return 1;
+
+    return 1;
 }
 
 
