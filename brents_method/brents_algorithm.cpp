@@ -5,17 +5,78 @@
 * Version 1.0.0
 * August 27, 2015
 *
-*Brent's Method Function | combining bisection method, secant method, and inverse quadratic interpolation in one algorithm
+* Test Program for Brent's Method Function.
 *
-*******************************************************************************/
-#ifndef brent_fun
-#define brent_fun
+* Brent's method makes use of the bisection method, the secant method, and inverse quadratic interpolation in one algorithm.
+*
+* Function Contained in brent_fun.h
+* To Compile Please use icc -std=c++11 if using intel or g++ -std=c++11 if using GCC.
+*
+********************************************************************************/
 
+#include <iostream>
 #include <cmath>
-#include <functional>
 #include <algorithm>
+#include <functional>
+#include <ctime>
+//#include "brent_fun.h"
 
 void brents_fun(std::function<double (double)> f, double lower_bound, double upper_bound, double TOL, double MAX_ITER);
+
+int main()
+{
+	//clock stuff
+	std::clock_t start;
+	double duration;
+	start = std::clock();
+	//stop clock stuff 
+
+	double a;				// lower bound
+	double b;				// upper bound
+	double TOL = 0.0001;	// tolerance
+	double MAX_ITER = 1000;	// maximum number of iterations
+
+	int function;			// set polynomial to find roots of & boundary conditions for that polynomial
+
+	std::cout << std::endl;
+
+	for (function = 1; function <= 3; function++)
+	{
+		if (function == 1)
+		{
+			a = -1.5;
+			b = 0;
+			auto f = [](double x){ return (x+1) * (x+2) * (x+3); };
+			brents_fun(f,a,b,TOL,MAX_ITER);
+		}
+		else if (function == 2)
+		{
+			a = -10;
+			b = 10;
+			auto f = [](double x){ return (x*x*x -4*x - 9); };
+			brents_fun(f,a,b,TOL,MAX_ITER);
+		}
+		else if (function == 3)
+		{
+			a = -4;
+			b = 3;
+			auto f = [](double x){ return (x+3)*(x-1)*(x-1); };
+			brents_fun(f,a,b,TOL,MAX_ITER);
+		}
+	}
+
+	
+
+	
+	//clock stuff again
+	duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
+	std::cout << "Elapsed time: " << duration << " seconds" << std::endl;
+	//finish clock stuff
+
+	std::cout << std::endl;
+
+	return 0;
+}
 
 void brents_fun(std::function<double (double)> f, double lower_bound, double upper_bound, double TOL, double MAX_ITER)
 {
@@ -119,7 +180,8 @@ void brents_fun(std::function<double (double)> f, double lower_bound, double upp
 
 } // end brent_fun
 
-#endif // brent_fun
+
+
 
 
 
