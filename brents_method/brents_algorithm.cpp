@@ -9,7 +9,6 @@
 *
 * Brent's method makes use of the bisection method, the secant method, and inverse quadratic interpolation in one algorithm.
 *
-* Function Contained in brent_fun.h
 * To Compile Please use icc -std=c++11 if using intel or g++ -std=c++11 if using GCC.
 *
 ********************************************************************************/
